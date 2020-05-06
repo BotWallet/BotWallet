@@ -1,2 +1,3 @@
-## TEST
-### Test
+## BotWallet
+
+Telegram bot for cost management
