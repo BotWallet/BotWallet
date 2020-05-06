@@ -1,0 +1,12 @@
+{
+  "name": "isBotWallet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/BotWallet/BotWallet.git",
+  "author": "AlekseyShatohin <56636950+AlekseyShatohin@users.noreply.github.com>",
+  "license": "MIT",
+
+  "dependencies": {
+    "node-telegram-bot-api": "^0.40.0"
+  }
+}
