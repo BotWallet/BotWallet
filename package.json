@@ -1,12 +1,24 @@
 {
   "name": "isBotWallet",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/BotWallet/BotWallet.git",
   "author": "AlekseyShatohin <56636950+AlekseyShatohin@users.noreply.github.com>",
   "license": "MIT",
-
+  "scripts": {
+    "start": "node dist/bot.js",
+    "build": "yarn build-ts",
+    "build-ts": "tsc",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"red.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\"",
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon dist/bot.js"
+  },
   "dependencies": {
-    "node-telegram-bot-api": "^0.40.0"
+    "@types/node": "^13.13.5",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3",
+    "socks5-https-client": "^1.2.1",
+    "telegraf": "^3.38.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
   }
 }
