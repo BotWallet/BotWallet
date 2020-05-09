@@ -5,12 +5,20 @@
   "author": "AlekseyShatohin <56636950+AlekseyShatohin@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/src/bot.js",
+    "start": "ts-node -r tsconfig-paths/register app/root/src/bot.js",
     "build": "yarn build-ts",
     "build-ts": "tsc",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\"",
     "watch-ts": "tsc -w",
-    "watch-node": "nodemon dist/bot.js"
+    "watch-node": "nodemon app/root/src/bot.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".git",
+      "node_modules"
+    ],
+    "exec": "node -r tsconfig-paths/register -r ts-node/register ./root/src/bot.ts",
+    "ext": "ts, js"
   },
   "dependencies": {
     "@types/node": "^13.13.5",
@@ -23,6 +31,7 @@
     "socks5-https-client": "^1.2.1",
     "telegraf": "^3.38.0",
     "ts-node": "^8.10.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
   }
 }
