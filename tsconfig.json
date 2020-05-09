@@ -1,25 +1,20 @@
 {
+  "extends": "./ts.config.json",
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "resolveJsonModule": true,
-    "lib": [
-      "es2017"
-    ],
+    "baseUrl": "./root",
+    "outDir": "app",
     "paths": {
       "*": [
         "node_modules/*"
+      ],
+      "@app-types": [
+        "types/index"
+      ],
+      "@app-config": [
+        "../config"
       ]
     }
-  },
-  "include": [
-    "src/**/*",
-    "types/**/*"
-  ]
+  }
 }

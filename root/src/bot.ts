@@ -1,10 +1,10 @@
 import {Markup} from 'telegraf'
 import {TelegrafContext} from 'telegraf/typings/context'
 
+import {commonTypes} from '@app-types'
+
 import Bot from './telegram'
 import {Synonymizer, Request} from './common'
-
-import {commonTypes} from '../types'
 
 const buttons = {
   setting: {

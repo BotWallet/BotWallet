@@ -1,4 +1,4 @@
-import {commonTypes} from '../../types'
+import {commonTypes} from '@app-types'
 
 export const Synonymizer = (query: string) => {
 
