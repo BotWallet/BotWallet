@@ -14,6 +14,15 @@
       ],
       "@app-config": [
         "../config"
+      ],
+      "@app-models": [
+        "src/models/index"
+      ],
+      "@app-controllers": [
+        "src/controllers/index"
+      ],
+      "@app-common": [
+        "src/common/index"
       ]
     }
   }

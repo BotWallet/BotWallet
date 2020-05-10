@@ -5,26 +5,29 @@
   "author": "AlekseyShatohin <56636950+AlekseyShatohin@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node -r tsconfig-paths/register app/root/src/bot.js",
+    "start": "ts-node -r tsconfig-paths/register app/root/src",
     "build": "yarn build-ts",
     "build-ts": "tsc",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\"",
     "watch-ts": "tsc -w",
-    "watch-node": "nodemon app/root/src/bot.js"
+    "watch-node": "nodemon app/root/src"
   },
   "nodemonConfig": {
     "ignore": [
       ".git",
       "node_modules"
     ],
-    "exec": "node -r tsconfig-paths/register -r ts-node/register ./root/src/bot.ts",
+    "exec": "node -r tsconfig-paths/register -r ts-node/register ./root/src",
     "ext": "ts, js"
   },
   "dependencies": {
+    "@types/mongodb": "^3.5.16",
+    "@types/mongoose": "^5.7.16",
     "@types/node": "^13.13.5",
     "@types/request-promise": "^4.1.46",
     "concurrently": "^5.2.0",
     "mongodb": "^3.5.7",
+    "mongoose": "^5.9.13",
     "nodemon": "^2.0.3",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",

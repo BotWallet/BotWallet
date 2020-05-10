@@ -24,4 +24,3 @@ Bot.use(session())
 Bot.launch().then().catch((error) => {throw new Error(error)})
 
 export default Bot
-
