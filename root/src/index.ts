@@ -33,3 +33,4 @@ mongoose.connection.on('open', () => {
 
   Bot.command('spend', async (ctx: any) => ctx.scene.enter('spend'))
 })
+
