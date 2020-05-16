@@ -1,7 +1,7 @@
-import {TelegrafContext} from 'telegraf/typings/context'
+import * as Keyboard from './Keyboards'
+import * as Triggers from './Triggers'
 
-export const ReturnMainMenu = async (ctx: TelegrafContext) => {
-  const Stage = require('telegraf/stage')
-  const {leave} = Stage
-  leave()
+export {
+  Keyboard,
+  Triggers,
 }

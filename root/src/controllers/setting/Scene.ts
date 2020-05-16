@@ -1,27 +1,19 @@
 import {TelegrafContext} from 'telegraf/typings/context'
-import {Markup} from 'telegraf'
 
-import {ReturnMainMenu} from '@app-controllers'
+import {SceneName} from '@app-common'
+import {Keyboard, Triggers} from '../common'
 
-const Stage = require('telegraf/stage')
 const Scene = require('telegraf/scenes/base')
 
-const {leave} = Stage
+export const scene = new Scene(SceneName.Setting)
 
-export const setting = new Scene('setting')
-
-setting.enter(async (ctx: TelegrafContext) => {
-  await ctx.reply('Настройка профиля', Markup.keyboard([
-    Markup.button('Установка баланса'),
-    Markup.button('Главное меню'),
-  ]).extra())
+scene.enter(async (ctx: TelegrafContext) => {
+  await ctx.reply('(Setting)\nНастройка профиля', Keyboard.setting)
 })
 
-setting.hears('Установка баланса', async (ctx: any) => {
-  await ctx.scene.enter('setTotalBalance')
-})
-setting.hears('Главное меню', async (ctx: TelegrafContext) => {
-  await ReturnMainMenu(ctx)
-})
+scene.hears(Triggers.SetTotalBalance, async (ctx: any) => await ctx.scene.enter(SceneName.SetTotalBalance))
+scene.hears(Triggers.MainMenu, async (ctx: any) => await ctx.scene.enter(SceneName.Main))
 
-setting.command('exit', leave())
+scene.on('message', async (ctx: TelegrafContext) => {
+  await ctx.reply(`(Setting)\nНеизвестная команда.\nВоспользуйтесь /help или вспомогательной клавиатурой.`)
+})

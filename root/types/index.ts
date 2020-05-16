@@ -1,5 +1,1 @@
-import * as commonTypes from './common'
-
-export {
-  commonTypes,
-}
+export * from './common'

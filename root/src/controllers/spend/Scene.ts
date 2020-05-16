@@ -1,22 +1,33 @@
 import {TelegrafContext} from 'telegraf/typings/context'
-import {Markup} from 'telegraf'
 
-const Stage = require('telegraf/stage')
+import {SceneName} from '@app-common'
+
+import {Keyboard, Triggers} from '../common'
+
 const Scene = require('telegraf/scenes/base')
 
-const {leave} = Stage
+export const scene = new Scene(SceneName.Spend)
 
-export const spend = new Scene('spend')
-
-spend.enter(async (ctx: TelegrafContext) => {
+scene.enter(async (ctx: TelegrafContext) => {
   await ctx.reply(
-    'Укажите сумму',
-    Markup.keyboard([
-      Markup.button('100'),
-      Markup.button('300'),
-      Markup.button('500'),
-    ]).extra(),
+    '(Spend)\nУкажите сумму',
+    Keyboard.common
   )
 })
 
-spend.command('exit', leave())
+scene.hears(Triggers.Cancel, async (ctx: any) => ctx.scene.enter(SceneName.Main))
+scene.hears(Triggers.MainMenu, async (ctx: any) => ctx.scene.enter(SceneName.Main))
+
+scene.on('message', async (ctx: any) => {
+  const value = Number(ctx.message.text)
+
+  if (value) {
+    await ctx.scene.enter(SceneName.SelectSpendCategory, {request: value})
+  }
+  else {
+    await ctx.reply('Некоректное значение.\nПожалуйста, повторите или воспользуйтесь всапомогательной клавиатурой для отмены')
+  }
+})
+
+
+

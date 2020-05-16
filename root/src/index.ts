@@ -2,8 +2,9 @@ import mongoose from 'mongoose'
 import {Stage} from 'telegraf'
 
 import {Config} from '@app-config'
+import {scenes} from '@app-controllers'
+import {SceneName} from '@app-common'
 
-import {SettingScene, SetTotalBalanceScene, SpendScene, StartScene} from '@app-controllers'
 import Bot from './Telegram'
 
 mongoose.connect(Config.mongoConnect, {
@@ -17,20 +18,14 @@ mongoose.connection.on('error', err => {
 
 mongoose.connection.on('open', () => {
 
-  const stage = new Stage([
-    StartScene.start,
-    SettingScene.setting,
-    SpendScene.spend,
-    SetTotalBalanceScene.setTotalBalance,
-  ])
+  const stage = new Stage(scenes)
 
   Bot.use(stage.middleware())
 
-  Bot.start(async (ctx: any) => ctx.scene.enter('start'))
+  Bot.start(async (ctx: any) => ctx.scene.enter(SceneName.Start))
 
-  Bot.command('setting', async (ctx: any) => ctx.scene.enter('setting'))
+  Bot.on('text', async (ctx: any) => ctx.scene.enter(SceneName.Main, {request: ctx.message.text}))
 
-  Bot.command('spend', async (ctx: any) => ctx.scene.enter('spend'))
 })
 
 

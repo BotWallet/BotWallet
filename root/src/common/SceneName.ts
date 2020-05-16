@@ -1,0 +1,6 @@
+export const Start = String('Start')
+export const Main = String('Main')
+export const Setting = String('Setting')
+export const Spend = String('Spend')
+export const SetTotalBalance = String('SetTotalBalance')
+export const SelectSpendCategory = String('SelectSpendCategory')
