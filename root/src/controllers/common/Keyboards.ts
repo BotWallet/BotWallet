@@ -10,13 +10,7 @@ export const setting = Markup.keyboard([
   Markup.button('Главное меню'),
 ]).extra()
 
-export const selectCategory = Markup.keyboard([
-  Markup.button('Любая'),
-  Markup.button('Назад'),
-  Markup.button('Главное меню'),
-]).extra()
-
 export const common = Markup.keyboard([
-  Markup.button('Отмена'),
+  Markup.button('Назад'),
   Markup.button('Главное меню'),
 ]).extra()

@@ -1,6 +1,6 @@
 import {TelegrafContext} from 'telegraf/typings/context'
 
-import {SceneName} from '@app-common'
+import {AuthUser, SceneName} from '@app-common'
 import {SceneRequest} from '@app-types'
 
 import {Keyboard, Triggers} from '../common'
@@ -19,7 +19,11 @@ scene.enter(async (ctx: any) => {
     await ctx.scene.enter(SceneName.Setting)
   }
   else {
-    await ctx.reply(`(Main)\nНеизвестная команда.\nВоспользуйтесь /help или вспомогательной клавиатурой.`, Keyboard.main)
+    const user = await AuthUser(ctx.from.id)
+    if (user) {
+      await ctx.reply(`Текущий общий остаток: ${user.totalBalance}`, Keyboard.main)
+    }
+
   }
 })
 

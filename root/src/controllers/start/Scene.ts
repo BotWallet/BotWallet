@@ -1,6 +1,6 @@
 import {User} from '@app-models'
 
-import {AuthUser, SceneName} from '@app-common'
+import {AuthUser, DefaultCategory, SceneName} from '@app-common'
 
 const Scene = require('telegraf/scenes/base')
 
@@ -22,6 +22,7 @@ scene.enter(async (ctx: any) => {
       name: ctx.from.first_name + ' ' + ctx.from.last_name,
       lastActivity: now,
       totalBalance: 0,
+      category: DefaultCategory,
     })
     await newUser.save()
     await ctx.reply(`Пользователь @${newUser.username} успешно зарегистрирован!`)
